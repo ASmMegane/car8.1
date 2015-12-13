@@ -1,0 +1,4 @@
+﻿  car8.1.cpp
+d:\my documents\visual studio 2015\projects\car8.1\car8.1\car8.1.cpp(9): warning C4305: '=': truncation from 'double' to 'float'
+d:\my documents\visual studio 2015\projects\car8.1\car8.1\car8.1.cpp(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  car8.1.vcxproj -> d:\my documents\visual studio 2015\Projects\car8.1\Debug\car8.1.exe
