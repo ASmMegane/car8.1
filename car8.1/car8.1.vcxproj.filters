@@ -27,12 +27,18 @@
     <ClInclude Include="config.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="carEntity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="car8.1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="carEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
