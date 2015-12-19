@@ -1,8 +1,8 @@
 #pragma once
 #include "config.h"
 
-struct CarDate {
-	CarDate() {};
+struct CarData {
+	CarData() {};
 	float speed;
 	float speed0;
 	double acceleration;
@@ -16,6 +16,6 @@ struct CarDate {
 	sf::RectangleShape line;
 };
 
-void carDataInit(CarDate & dateCar);
-void carMoving(Config & conf, CarDate & dateCar);
-void drawing(Config & conf, CarDate & dateCar);
+void carInitData(CarData & dataCar);
+void carMove(Config & conf, CarData & dataCar);
+void carDraw(Config & conf, CarData & dataCar);

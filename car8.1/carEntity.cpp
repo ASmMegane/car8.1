@@ -2,37 +2,35 @@
 #include "config.h"
 #include "carEntity.h"
 
-void carDataInit(CarDate & dateCar) {
-	dateCar.speed0 = 0;
-	dateCar.speed = 0;
-	dateCar.acceleration = -0.00000000001;
-	dateCar.isSlowdown = 1;
-	dateCar.isMoveBack = -1;
+void carInitData(CarData & dataCar) {
+	dataCar.speed0 = 0;
+	dataCar.speed = 0;
+	dataCar.acceleration = -0.00000000001;
+	dataCar.isSlowdown = 1;
+	dataCar.isMoveBack = -1;
 }
 
-void carMoving(Config & conf, CarDate & dateCar) {
-	if (dateCar.speed <= 0) {
-		dateCar.isMoveBack = dateCar.isMoveBack * -1.0f;
-		dateCar.acceleration = dateCar.acceleration * -1.0f;
+void carMove(Config & conf, CarData & dataCar) {
+	if (dataCar.speed <= 0) {
+		dataCar.isMoveBack = dataCar.isMoveBack * -1.0f;
+		dataCar.acceleration = dataCar.acceleration * -1.0f;
 	}
-	if (dateCar.carBody.getPosition().x < 380 && dateCar.carBody.getPosition().x > 370 && dateCar.acceleration > 0)
-		dateCar.acceleration = dateCar.acceleration * -1.0f;
-	dateCar.speed = (float)(dateCar.speed0 + dateCar.acceleration * dateCar.isSlowdown *  conf.deltaTime);
-	dateCar.speed0 = dateCar.speed;
-	dateCar.deltaX = dateCar.speed * conf.deltaTime * dateCar.isMoveBack;
-	dateCar.deltaFi = (float)(2 * M_PI * dateCar.speed * conf.deltaTime * dateCar.isMoveBack);
-	dateCar.wheel1.rotate(dateCar.deltaFi);
-	dateCar.wheel2.rotate(dateCar.deltaFi);
-	dateCar.carBody.move(dateCar.deltaX, 0);
-	dateCar.wheel1.move(dateCar.deltaX, 0);
-	dateCar.wheel2.move(dateCar.deltaX, 0);
+	if (dataCar.carBody.getPosition().x < 380 && dataCar.carBody.getPosition().x > 370 && dataCar.acceleration > 0)
+		dataCar.acceleration = dataCar.acceleration * -1.0f;
+	dataCar.speed = (float)(dataCar.speed0 + dataCar.acceleration * dataCar.isSlowdown *  conf.deltaTime);
+	dataCar.speed0 = dataCar.speed;
+	dataCar.deltaX = dataCar.speed * conf.deltaTime * dataCar.isMoveBack;
+	dataCar.deltaFi = (float)(2 * M_PI * dataCar.speed * conf.deltaTime * dataCar.isMoveBack);
+	dataCar.wheel1.rotate(dataCar.deltaFi);
+	dataCar.wheel2.rotate(dataCar.deltaFi);
+	dataCar.carBody.move(dataCar.deltaX, 0);
+	dataCar.wheel1.move(dataCar.deltaX, 0);
+	dataCar.wheel2.move(dataCar.deltaX, 0);
 }
 
-void drawing(Config & conf, CarDate & dateCar) {
-	conf.window.clear(sf::Color(255, 255, 255));
-	conf.window.draw(dateCar.wheel1);
-	conf.window.draw(dateCar.wheel2);
-	conf.window.draw(dateCar.carBody);
-	conf.window.draw(dateCar.line);
-	conf.window.display();
+void carDraw(Config & conf, CarData & dataCar) {
+	conf.window.draw(dataCar.wheel1);
+	conf.window.draw(dataCar.wheel2);
+	conf.window.draw(dataCar.carBody);
+	conf.window.draw(dataCar.line);
 }

@@ -42,17 +42,17 @@ sf::RectangleShape line() {
 }
 
 
-void runCar(Config & conf, CarDate & dateCar) {
+void runCar(Config & conf, CarData & dataCar) {
 	sf::Clock clock;
-	carDataInit(dateCar);
-	dateCar.carBody = createCar();
-	dateCar.wheel1 = createWheel();
-	dateCar.wheel2 = createWheel();
-	dateCar.line = line();
-	dateCar.wheel1.setPosition(80, 400);
-	dateCar.wheel2.setPosition(220, 400);
-	dateCar.line.setFillColor(sf::Color(0, 0, 0));
-	dateCar.line.setPosition(0, 420);
+	carInitData(dataCar);
+	dataCar.carBody = createCar();
+	dataCar.wheel1 = createWheel();
+	dataCar.wheel2 = createWheel();
+	dataCar.line = line();
+	dataCar.wheel1.setPosition(80, 400);
+	dataCar.wheel2.setPosition(220, 400);
+	dataCar.line.setFillColor(sf::Color(0, 0, 0));
+	dataCar.line.setPosition(0, 420);
 
 	while (conf.window.isOpen()) {
 		conf.deltaTime = (float)clock.getElapsedTime().asMicroseconds();
@@ -62,17 +62,19 @@ void runCar(Config & conf, CarDate & dateCar) {
 			if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 				conf.window.close();
 		}
-		carMoving(conf, dateCar);
-		drawing(conf, dateCar);
+		carMove(conf, dataCar);
+		conf.window.clear(sf::Color(255, 255, 255));
+		carDraw(conf, dataCar);
+		conf.window.display();
 		sf::sleep(sf::microseconds((sf::Int64)(1000000 / 60.0) - clock.getElapsedTime().asMicroseconds()));
 	}
 }
 
 int main(){
 	Config conf;
-	CarDate dateCar;
+	CarData dataCar;
 	dataInit(conf);
-	runCar(conf, dateCar);
+	runCar(conf, dataCar);
     return 0;
 }
 
